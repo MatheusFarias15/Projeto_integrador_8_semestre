@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f4">
+    <meta name="description" content="Registro local de sessões e medições do projeto GlicSense.">
+    <title>GlicSense — coleta de dados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="/" aria-label="GlicSense início">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>glic<span class="brand-accent">sense</span><small>LABORATÓRIO DE PESQUISA</small></span>
+        </a>
+        <div class="side-label">ESPAÇO DE TRABALHO</div>
+        <a class="nav-link active" href="#overview"><span class="nav-icon">◫</span>Visão geral</a>
+        <a class="nav-link" href="#session-form"><span class="nav-icon">＋</span>Nova sessão</a>
+        <a class="nav-link" href="#session-list"><span class="nav-icon">▤</span>Coletas recentes</a>
+        <div class="sidebar-note">
+          <span class="note-icon">⌁</span>
+          <strong>Coleta responsável</strong>
+          <p>Use somente o código de pesquisa. Evite registrar informações que identifiquem diretamente o participante.</p>
+        </div>
+        <div class="sidebar-footer"><span class="status-dot"></span> Banco de dados local</div>
+      </aside>
+
+      <main class="main-content" id="overview">
+        <header class="topbar">
+          <div><span class="eyebrow">PROJETO DE PESQUISA · GLICSENSE</span><h1>Coleta de dados</h1></div>
+          <div class="topbar-meta"><span class="live-dot"></span><span>Ambiente de validação</span><span class="avatar">GS</span></div>
+        </header>
+
+        <section class="intro-row">
+          <div><h2>Olá, equipe <span class="wave">✳</span></h2><p>Registre cada coleta e mantenha as medições organizadas por participante.</p></div>
+          <a class="button button-primary" href="#session-form"><span>＋</span> Iniciar sessão</a>
+        </section>
+
+        <section class="stats-grid" aria-label="Resumo das coletas">
+          <article class="stat-card"><div class="stat-top"><span>Sessões registradas</span><span class="stat-icon mint">▤</span></div><strong id="stat-sessions">—</strong><small>Total no banco local</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Participantes</span><span class="stat-icon lavender">♙</span></div><strong id="stat-participants">—</strong><small>Identificados por código</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Medições coletadas</span><span class="stat-icon peach">⌁</span></div><strong id="stat-measurements">—</strong><small>Referência + sinais do sensor</small></article>
+          <article class="stat-card highlight-card"><div class="highlight-decoration">⌁</div><span class="card-overline">QUALIDADE DO DATASET</span><strong>Dados organizados,<br>pesquisa mais consistente.</strong><small>Brutos e pré-processados, lado a lado.</small></article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel session-panel" id="session-form">
+            <div class="panel-heading"><div><span class="section-kicker">NOVA COLETA</span><h2>Iniciar sessão de teste</h2><p>Identifique o participante e abra uma nova sessão.</p></div><span class="step-badge">01 <i>/ 02</i></span></div>
+            <form id="start-session-form">
+              <div class="form-grid">
+                <label class="field field-wide">Código do participante <span class="required">*</span><input id="participant-code" name="participantCode" type="text" maxlength="40" placeholder="Ex.: GS-001" autocomplete="off" required><small>Utilize um código sem nome ou outro dado identificável.</small></label>
+                <label class="field">Faixa etária <span class="optional">opcional</span><select id="age-range" name="ageRange"><option value="">Não informado</option><option>18–29</option><option>30–39</option><option>40–49</option><option>50–59</option><option>60+</option></select></label>
+                <label class="field">Sexo biológico <span class="optional">opcional</span><select id="sex" name="sex"><option value="">Não informado</option><option value="F">Feminino</option><option value="M">Masculino</option><option value="other">Outro / prefere não informar</option></select></label>
+                <label class="field field-wide">Observações da sessão <span class="optional">opcional</span><textarea id="session-notes" name="notes" rows="2" maxlength="500" placeholder="Ex.: mão utilizada, condição do ambiente..."></textarea></label>
+              </div>
+              <div class="form-actions"><span class="privacy-hint"><span>♢</span> Dados salvos somente neste dispositivo.</span><button class="button button-primary" type="submit">Abrir sessão <span>→</span></button></div>
+            </form>
+          </article>
+
+          <aside class="panel protocol-panel">
+            <span class="section-kicker">PROTOCOLO DE MEDIÇÃO</span><h2>Uma coleta de cada vez</h2><p>Para cada leitura, registre a referência e os sinais recebidos da garra ergonômica.</p>
+            <div class="protocol-list"><div><span class="protocol-number">01</span><span><strong>Identifique</strong><small>Informe o código do participante.</small></span></div><div><span class="protocol-number">02</span><span><strong>Referência</strong><small>Registre o valor de glicemia de referência.</small></span></div><div><span class="protocol-number">03</span><span><strong>Sinais do ESP32</strong><small>Adicione os dados ópticos, temperatura e força.</small></span></div></div>
+            <div class="protocol-foot"><span class="sensor-symbol">⌁</span><span>Valores são armazenados como <b>dados brutos</b> e em formato <b>numérico padronizado</b>.</span></div>
+          </aside>
+        </section>
+
+        <section class="panel active-session-panel hidden" id="active-session-panel" aria-live="polite">
+          <div class="panel-heading"><div><span class="section-kicker">SESSÃO EM ANDAMENTO</span><h2 id="active-session-title">Sessão</h2><p id="active-session-subtitle"></p></div><button class="button button-secondary" id="close-session-button" type="button">Encerrar sessão</button></div>
+          <form id="measurement-form">
+            <div class="form-grid measurement-grid">
+              <label class="field">Medição da glicose <span class="required">*</span><div class="input-unit"><input name="referenceMgDl" type="number" min="20" max="600" step="0.1" placeholder="95" required><span>mg/dL</span></div></label>
+            </div>
+            <div class="form-actions"><span class="privacy-hint"><span>i</span> Cada envio cria uma medição vinculada à sessão ativa.</span><button class="button button-primary" type="submit">Salvar medição <span>→</span></button></div>
+          </form>
+          <div id="measurement-list" class="measurement-list"></div>
+        </section>
+
+        <section class="panel recent-panel" id="session-list">
+          <div class="panel-heading recent-heading"><div><span class="section-kicker">ACOMPANHAMENTO</span><h2>Sessões recentes</h2><p>Histórico de coletas salvas neste dispositivo.</p></div><span id="session-count-label" class="count-pill">0 sessões</span></div>
+          <div class="table-wrap"><table><thead><tr><th>PARTICIPANTE</th><th>DATA E HORA</th><th>MEDIÇÕES</th><th>STATUS</th><th></th></tr></thead><tbody id="sessions-table-body"><tr><td colspan="5" class="table-loading">Carregando sessões...</td></tr></tbody></table></div>
+        </section>
+        <footer class="page-footer"><span>GlicSense <span>·</span> Ferramenta de apoio à pesquisa</span><span>As leituras não substituem avaliação clínica.</span></footer>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <dialog id="session-dialog" class="session-dialog"><button class="dialog-close" type="button" aria-label="Fechar">×</button><div id="dialog-content"></div></dialog>
+  </body>
+</html>

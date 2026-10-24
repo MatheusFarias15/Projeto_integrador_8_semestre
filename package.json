@@ -1,0 +1,17 @@
+{
+  "name": "glicsense-data-collection",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interface local para registro das sessões de coleta do projeto acadêmico GlicSense.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0"
+  }
+}
